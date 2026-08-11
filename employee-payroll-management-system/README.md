@@ -60,6 +60,7 @@ employee-payroll-management-system
 │
 ├── pom.xml
 └── README.md
+
 ##  Main Features
 
 --> Add employee details
@@ -94,7 +95,7 @@ Get All Employees
 Update Employee
 Delete Employee
 
-##  Development Workflow
+## Development Workflow
 The project is developed using Git and GitHub for version control.
 Each major project update is committed and pushed to the GitHub repository.
 
