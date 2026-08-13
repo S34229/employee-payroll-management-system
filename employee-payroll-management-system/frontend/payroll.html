@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <h1>Payroll Management</h1>
+
+        <form id="payrollForm">
+
+            <input type="number" id="employeeId"
+                   placeholder="Employee ID" required>
+
+            <input type="number" id="basicSalary"
+                   placeholder="Basic Salary" required>
+
+            <input type="number" id="allowance"
+                   placeholder="Allowance" required>
+
+            <input type="number" id="deduction"
+                   placeholder="Deduction" required>
+
+            <button type="submit">Calculate Salary</button>
+
+        </form>
+
+        <p id="message"></p>
+
+        <h2>Salary Details</h2>
+
+        <div id="salaryDetails"></div>
+
+        <br>
+
+        <button onclick="window.location.href='dashboard.html'">
+            Back to Dashboard
+        </button>
+
+    </div>
+
+    <script src="payroll.js"></script>
+
+</body>
+</html>
