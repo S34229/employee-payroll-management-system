@@ -61,6 +61,25 @@ employee-payroll-management-system
 ├── pom.xml
 └── README.md
 
+## Project Structure
+
+### Frontend
+   The `frontend` folder contains the user interface:
+    - Login
+    - Dashboard
+    - Employee Management
+    - Attendance
+    - Payroll
+    - Salary Details
+
+### Backend
+  The `src` folder contains the Spring Boot backend:
+   - Controller
+   - Service
+   - Repository
+   - Entity
+   - Database configuration
+
 ##  Main Features
 
 --> Add employee details
