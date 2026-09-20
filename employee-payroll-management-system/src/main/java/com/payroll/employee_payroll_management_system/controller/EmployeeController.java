@@ -7,6 +7,8 @@ import com.payroll.employee_payroll_management_system.service.PayrollAnomalyServ
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.payroll.employee_payroll_management_system.service.PayrollAnomalyService;
+import com.payroll.employee_payroll_management_system.service.AttendanceSalaryValidationService;
+
 import java.util.List;
 @CrossOrigin(origins = "*")
 @RestController
@@ -18,6 +20,9 @@ public class EmployeeController {
 
 @Autowired
 private PayrollAnomalyService payrollAnomalyService;
+
+@Autowired
+private AttendanceSalaryValidationService attendanceSalaryValidationService;
 
     @GetMapping
     public List<Employee> getAllEmployees() {
@@ -49,5 +54,24 @@ public String checkPayrollAnomaly(
     }
 
     return payrollAnomalyService.checkSalaryAnomaly(employee, previousSalary);
+}
+@GetMapping("/attendance-validation/{id}")
+public String validateAttendanceSalary(
+        @PathVariable Long id,
+        @RequestParam int presentDays,
+        @RequestParam int totalDays) {
+
+    Employee employee = service.getAllEmployees()
+            .stream()
+            .filter(e -> e.getId().equals(id))
+            .findFirst()
+            .orElse(null);
+
+    if (employee == null) {
+        return "Employee not found";
+    }
+
+    return attendanceSalaryValidationService.validateSalary(
+            employee, presentDays, totalDays);
 }
 }
