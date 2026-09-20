@@ -89,3 +89,16 @@ Employee Payroll Management System
 ├── pom.xml                           # Maven configuration
 ├── Dockerfile                        # Deployment configuration
 └── README.md
+##  --Future Enhancements
+--> Smart payroll anomaly detection
+--> Attendance and salary validation
+--> Monthly salary insights
+--> Employee search and filtering
+--> Payroll reports and downloadable payslips
+--> Cloud deployment
+##  --Project Objective
+  The main objective of this project is to provide a simple and centralized system for managing employee information, attendance and payroll calculations while      reducing manual work and improving data organization.
+** ...Author
+SWATHI J
+B.E. Computer Science and Engineering
+J.J. College of Engineering and Technology
