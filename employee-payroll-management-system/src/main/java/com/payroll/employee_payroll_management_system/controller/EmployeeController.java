@@ -10,6 +10,7 @@ import com.payroll.employee_payroll_management_system.service.PayrollAnomalyServ
 import com.payroll.employee_payroll_management_system.service.AttendanceSalaryValidationService;
 import com.payroll.employee_payroll_management_system.service.SalaryInsightsService;
 import com.payroll.employee_payroll_management_system.service.ExplainablePayrollAlertService;
+import com.payroll.employee_payroll_management_system.service.PayrollHealthDashboardService;
 
 import java.util.List;
 @CrossOrigin(origins = "*")
@@ -32,6 +33,8 @@ private SalaryInsightsService salaryInsightsService;
 @Autowired
 private ExplainablePayrollAlertService explainablePayrollAlertService;
 
+@Autowired
+private PayrollHealthDashboardService payrollHealthDashboardService;
 
     @GetMapping
     public List<Employee> getAllEmployees() {
@@ -111,6 +114,12 @@ public String explainablePayrollAlert(
             previousSalary,
             presentDays,
             totalDays
+    );
+}
+@GetMapping("/payroll-health")
+public String getPayrollHealth() {
+    return payrollHealthDashboardService.getPayrollHealth(
+            service.getAllEmployees()
     );
 }
 }

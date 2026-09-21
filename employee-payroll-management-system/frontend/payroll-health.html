@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll Health Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <h1>Payroll Health Dashboard</h1>
+
+    <button onclick="getPayrollHealth()">
+        Check Payroll Health
+    </button>
+
+    <p id="result"></p>
+
+    <br>
+
+    <button onclick="window.location.href='dashboard.html'">
+        Back to Dashboard
+    </button>
+
+</div>
+
+<script>
+
+function getPayrollHealth() {
+
+    fetch("http://localhost:8080/employees/payroll-health")
+
+        .then(response => response.text())
+
+        .then(data => {
+            document.getElementById("result").innerText = data;
+        })
+
+        .catch(error => {
+            document.getElementById("result").innerText =
+                "Unable to load Payroll Health.";
+        });
+}
+
+</script>
+
+</body>
+</html>
