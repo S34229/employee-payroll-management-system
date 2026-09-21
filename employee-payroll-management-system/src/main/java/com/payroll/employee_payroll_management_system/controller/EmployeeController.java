@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.payroll.employee_payroll_management_system.service.PayrollAnomalyService;
 import com.payroll.employee_payroll_management_system.service.AttendanceSalaryValidationService;
+import com.payroll.employee_payroll_management_system.service.SalaryInsightsService;
 
 import java.util.List;
 @CrossOrigin(origins = "*")
@@ -23,6 +24,9 @@ private PayrollAnomalyService payrollAnomalyService;
 
 @Autowired
 private AttendanceSalaryValidationService attendanceSalaryValidationService;
+
+@Autowired
+private SalaryInsightsService salaryInsightsService;
 
     @GetMapping
     public List<Employee> getAllEmployees() {
@@ -73,5 +77,11 @@ public String validateAttendanceSalary(
 
     return attendanceSalaryValidationService.validateSalary(
             employee, presentDays, totalDays);
+}
+@GetMapping("/salary-insights")
+public String getSalaryInsights() {
+    return salaryInsightsService.getSalaryInsights(
+            service.getAllEmployees()
+    );
 }
 }

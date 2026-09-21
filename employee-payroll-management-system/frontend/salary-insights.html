@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Salary Insights</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <h1>Smart Salary Insights</h1>
+
+    <button onclick="getSalaryInsights()">
+        View Salary Insights
+    </button>
+
+    <p id="result"></p>
+
+    <br>
+
+    <button onclick="window.location.href='dashboard.html'">
+        Back to Dashboard
+    </button>
+
+</div>
+
+<script>
+    function getSalaryInsights() {
+
+        fetch("http://localhost:8080/employees/salary-insights")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("result").innerText = data;
+            })
+            .catch(error => {
+                document.getElementById("result").innerText =
+                    "Unable to load salary insights.";
+            });
+    }
+</script>
+
+</body>
+</html>
