@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import com.payroll.employee_payroll_management_system.service.PayrollAnomalyService;
 import com.payroll.employee_payroll_management_system.service.AttendanceSalaryValidationService;
 import com.payroll.employee_payroll_management_system.service.SalaryInsightsService;
+import com.payroll.employee_payroll_management_system.service.ExplainablePayrollAlertService;
 
 import java.util.List;
 @CrossOrigin(origins = "*")
@@ -27,6 +28,10 @@ private AttendanceSalaryValidationService attendanceSalaryValidationService;
 
 @Autowired
 private SalaryInsightsService salaryInsightsService;
+
+@Autowired
+private ExplainablePayrollAlertService explainablePayrollAlertService;
+
 
     @GetMapping
     public List<Employee> getAllEmployees() {
@@ -82,6 +87,30 @@ public String validateAttendanceSalary(
 public String getSalaryInsights() {
     return salaryInsightsService.getSalaryInsights(
             service.getAllEmployees()
+    );
+}
+@GetMapping("/explainable-alert/{id}")
+public String explainablePayrollAlert(
+        @PathVariable Long id,
+        @RequestParam double previousSalary,
+        @RequestParam int presentDays,
+        @RequestParam int totalDays) {
+
+    Employee employee = service.getAllEmployees()
+            .stream()
+            .filter(e -> e.getId().equals(id))
+            .findFirst()
+            .orElse(null);
+
+    if (employee == null) {
+        return "Employee not found";
+    }
+
+    return explainablePayrollAlertService.generateAlert(
+            employee,
+            previousSalary,
+            presentDays,
+            totalDays
     );
 }
 }
