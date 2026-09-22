@@ -21,6 +21,7 @@ public class UserDataLoader implements CommandLineRunner {
 
             User user = new User(
                     "admin",
+                    "admin@example.com",
                     "admin123",
                     "ADMIN"
             );

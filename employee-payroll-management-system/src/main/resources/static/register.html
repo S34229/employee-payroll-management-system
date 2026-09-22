@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <h1>Create Account</h1>
+
+    <input type="email" id="email" placeholder="Email" required>
+
+    <button onclick="sendOtp()">Send OTP</button>
+
+    <br><br>
+
+    <input type="text" id="otp" placeholder="Enter OTP">
+
+    <button onclick="verifyOtp()">Verify OTP</button>
+
+    <p id="message"></p>
+
+    <div id="accountSection" style="display:none;">
+
+        <input type="text" id="username" placeholder="Username">
+
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="createAccount()">Create Account</button>
+
+    </div>
+
+</div>
+
+<script>
+
+async function sendOtp() {
+
+    const email = document.getElementById("email").value;
+
+    const response = await fetch(
+        `/api/register/send-otp?email=${encodeURIComponent(email)}`,
+        { method: "POST" }
+    );
+
+    const result = await response.text();
+
+    document.getElementById("message").textContent = result;
+}
+
+async function verifyOtp() {
+
+    const email = document.getElementById("email").value;
+    const otp = document.getElementById("otp").value;
+
+    const response = await fetch(
+        `/api/register/verify-otp?email=${encodeURIComponent(email)}&otp=${encodeURIComponent(otp)}`,
+        { method: "POST" }
+    );
+
+    const result = await response.text();
+
+    document.getElementById("message").textContent = result;
+
+    if (result === "OTP verified successfully") {
+        document.getElementById("accountSection").style.display = "block";
+    }
+}
+
+async function createAccount() {
+
+    const email = document.getElementById("email").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    const response = await fetch(
+        `/api/register/create-account?email=${encodeURIComponent(email)}&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+        { method: "POST" }
+    );
+
+    const result = await response.text();
+
+    document.getElementById("message").textContent = result;
+
+    if (result === "Account created successfully") {
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 1000);
+    }
+}
+
+</script>
+
+</body>
+</html>

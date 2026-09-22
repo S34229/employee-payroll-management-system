@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explainable Payroll Alert</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <h1>Explainable Payroll Alert</h1>
+
+    <label>Employee ID:</label>
+    <input type="number" id="employeeId">
+
+    <br><br>
+
+    <label>Previous Salary:</label>
+    <input type="number" id="previousSalary">
+
+    <br><br>
+
+    <label>Present Days:</label>
+    <input type="number" id="presentDays">
+
+    <br><br>
+
+    <label>Total Working Days:</label>
+    <input type="number" id="totalDays">
+
+    <br><br>
+
+    <button onclick="checkAlert()">
+        Check Payroll Alert
+    </button>
+
+    <p id="result"></p>
+
+    <br>
+
+    <button onclick="window.location.href='dashboard.html'">
+        Back to Dashboard
+    </button>
+
+</div>
+
+<script>
+    function checkAlert() {
+
+        const employeeId =
+            document.getElementById("employeeId").value;
+
+        const previousSalary =
+            document.getElementById("previousSalary").value;
+
+        const presentDays =
+            document.getElementById("presentDays").value;
+
+        const totalDays =
+            document.getElementById("totalDays").value;
+
+        fetch(`http://localhost:8080/employees/explainable-alert/${employeeId}?previousSalary=${previousSalary}&presentDays=${presentDays}&totalDays=${totalDays}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("result").innerText = data;
+            })
+            .catch(error => {
+                document.getElementById("result").innerText =
+                    "Unable to check payroll alert.";
+            });
+    }
+</script>
+
+</body>
+</html>

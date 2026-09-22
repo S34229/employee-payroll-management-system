@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <h1>Attendance Management</h1>
+
+        <form id="attendanceForm">
+
+            <input type="number"
+                   id="employeeId"
+                   placeholder="Employee ID"
+                   required>
+
+            <input type="date"
+                   id="date"
+                   required>
+
+            <select id="status" required>
+                <option value="">Select Attendance</option>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+                <option value="Leave">Leave</option>
+            </select>
+
+            <button type="submit">Save Attendance</button>
+
+        </form>
+
+        <p id="message"></p>
+
+        <h2>Attendance Details</h2>
+
+        <div id="attendanceDetails"></div>
+
+        <br>
+
+        <button onclick="window.location.href='dashboard.html'">
+            Back to Dashboard
+        </button>
+
+    </div>
+
+    <script src="attendance.js"></script>
+
+</body>
+</html>
